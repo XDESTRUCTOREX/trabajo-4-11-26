@@ -2,9 +2,9 @@ name: validacion pagina
 
 on: 
   push:
-    branches: [eduardo]
+    branches: [eduardo,main]
   pull_request:
-    branches: [eduardo]
+    branches: [eduardo,main]
 
 jobs:
   validacion:
@@ -19,3 +19,9 @@ jobs:
         uses: docker/setup-node@v4
         with:
           node-version: '22'
+
+      - name: validar codigo HTML
+        run: |
+          echo "inicio"
+          npx html-validate "**/*.html"
+          echo "fin"
